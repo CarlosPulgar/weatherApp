@@ -74,10 +74,25 @@ const TimeAndDetalis = ({
     },
   ];
 
+  let climaDetails = ()=>{
+    if(details === 'Clear'){
+        return 'Despejado'
+    }
+    if(details === 'Clouds'){
+      return 'Nuboso'
+    }
+    if(details === 'Rain'){
+      return 'Lluvia'
+    }
+    if(details === 'Cloudy'){
+      return 'Algunas nubes'
+    }
+}
+
   return (
     <div className="glassCard ">
       <div className="flex items-center md:shrink-0 justify-center py-6 text-xl text-cyan-300">
-        <p>{details}</p>
+        <p>{climaDetails(details)}</p>
       </div>
       <div className="flex flex-row items-center justify-around md:py-3 ">
         <img src={icon} alt="" />

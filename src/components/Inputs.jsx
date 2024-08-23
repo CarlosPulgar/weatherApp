@@ -22,7 +22,7 @@ const Inputs = ( {setQuery, setUnits} ) => {
   return (
     <div className='flex flex-col md:flex-row items-center  justify-center my-6 '>
 
-        <div className="flex flex-row w-3/4 justify-center items-center space-x-1">
+        <div className="flex flex-row w-auto justify-center items-center space-x-1">
             <input 
             value={city}
             onChange={(e) => setCity(e.target.value)}
@@ -39,7 +39,7 @@ const Inputs = ( {setQuery, setUnits} ) => {
             onClick={handleLocationClick}  /> */}
         </div>
 
-       <div className='flex flex-row mt-3 '>
+       <div className='flex flex-row mt-3 md:ml-3'>
        <div>
             <button className='text-2xl font-medium transition ease-out hover:scale-125'
             onClick={() => setUnits('metric')}

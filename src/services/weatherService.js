@@ -7,15 +7,16 @@ const getWeatherData = ( infoType, searchParams) => {
     const url  = new URL(BASE_URL + infoType);
     url.search = new URLSearchParams({...searchParams, appid:API_KEY});
     
-    
-    return fetch(url).then((res) => res.json()).then( (data)=> data);
+    return fetch(url).then((res) => res.json()).then( (data)=> data );
 };
+
+
 
 const iconUrlFromCode = (icon) =>  `http://openweathermap.org/img/wn/${icon}@2x.png`;
 
 const formatToLocalTime = (
     secs, offset,
-    format= "ccc/ LLL /yyyy ' |Hora local : ' hh:mm a "
+    format= "DDDD"
 ) => DateTime.fromSeconds ( secs + offset, {zone: "utc"}).toFormat(format);
 
 const formatCurrent = (data) => {
@@ -30,9 +31,14 @@ const formatCurrent = (data) => {
         wind: { speed },
         timezone,
     } = data;
+    console.log(data);
 
     const {main: details, icon} = weather[0];
+
+   
+
     const formattedLocalTime = formatToLocalTime(dt, timezone);
+    console.log(details);
 
     return {
         temp,
@@ -53,6 +59,7 @@ const formatCurrent = (data) => {
         lon
     };
 
+
 }
 
 const formatForecastWeather = (secs, offset, data) => {
@@ -68,16 +75,22 @@ const formatForecastWeather = (secs, offset, data) => {
     }));
 
     //Daily
-    const daily = data.filter((f) => f.dt_txt.slice(-8) === '00:00:00').map(f => ({
+    const daily = data
+    .filter((f) => f.dt_txt.slice(-8) === '00:00:00')
+    .map(f => ({
         temp: f.main.temp,
-        title: formatToLocalTime(f.dt, offset, 'ccc'),
+        title: formatToLocalTime(f.dt, offset, 'dd'),
         icon: iconUrlFromCode(f.weather[0].icon),
         date: f.dt_txt,
     }))
 
+   
+    
+   
 
     return { hourly, daily };
 }
+
 
 const getFormattedWeatherData = async (searchParams) => {
     const formattedCurrentweater = await getWeatherData(
@@ -89,6 +102,7 @@ const getFormattedWeatherData = async (searchParams) => {
 
     const formattedForecastWeather = await getWeatherData('forecast', {lat,lon, units: searchParams.units}).then( (d) => formatForecastWeather(dt, timezone, d.list));
 
+console.log(searchParams);
 
 
     return {...formattedCurrentweater, ...formattedForecastWeather};
