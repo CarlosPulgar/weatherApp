@@ -35,7 +35,8 @@ const App = () => {
     if(!weather) return 'from-cyan-600 to-blue-700';
     const threshold = units === 'metric' ? 15 : 60;
     if(weather.temp <= threshold) return 'from-cyan-600 to-blue-700';
-    return 'from-yellow-600 to-orange-700'
+    if(weather.details === 'Rain') return 'from-gray-400 to-blue-700';
+    return 'from-orange-400 to-yellow-700'
   }
 
   console.log(weather);

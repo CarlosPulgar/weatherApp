@@ -94,7 +94,7 @@ const TimeAndDetalis = ({
       <div className="flex items-center md:shrink-0 justify-center py-6 text-xl text-cyan-300">
         <p>{climaDetails(details)}</p>
       </div>
-      <div className="flex flex-row items-center justify-around md:py-3 ">
+      <div className="flex flex-row items-center justify-around md:justify-evenly md:py-3 ">
         <img src={icon} alt="" />
         <p className="text-5xl">{`${temp.toFixed()}`}</p>
         <div className="flex flex-col space-y-3 items-start">

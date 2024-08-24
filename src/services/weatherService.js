@@ -16,7 +16,7 @@ const iconUrlFromCode = (icon) =>  `http://openweathermap.org/img/wn/${icon}@2x.
 
 const formatToLocalTime = (
     secs, offset,
-    format= "DDDD"
+    format= "DDDD |||| hh:mm a"
 ) => DateTime.fromSeconds ( secs + offset, {zone: "utc"}).toFormat(format);
 
 const formatCurrent = (data) => {
@@ -79,16 +79,13 @@ const formatForecastWeather = (secs, offset, data) => {
     .filter((f) => f.dt_txt.slice(-8) === '00:00:00')
     .map(f => ({
         temp: f.main.temp,
-        title: formatToLocalTime(f.dt, offset, 'dd'),
+        title: formatToLocalTime(f.dt, offset, 'cccc'),
         icon: iconUrlFromCode(f.weather[0].icon),
         date: f.dt_txt,
-    }))
-
-   
-    
-   
-
+    }))     
+     
     return { hourly, daily };
+    
 }
 
 
