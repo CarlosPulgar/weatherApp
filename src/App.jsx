@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { WiDayFog } from "react-icons/wi";
 import TopButtons from "./components/TopButtons";
 import Inputs from "./components/Inputs";
 import TimeAndLocation from "./components/TimeAndLocation";
