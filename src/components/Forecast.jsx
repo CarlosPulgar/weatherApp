@@ -41,8 +41,11 @@ const Forecast = ({title, data}) => {
           
           ))
         }
+      
        
       </div>
+      <hr className='my-3' />
+
     </div>
   )
 }

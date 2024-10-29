@@ -7,6 +7,7 @@ import Forecast from "./components/Forecast";
 import getFormattedWeatherData from "./services/weatherService";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Footer from "./components/Footer";
 
 function capitalizeFirstLetter(string){
   return string.charAt(0).toUpperCase()+string.slice(1);
@@ -56,6 +57,7 @@ const App = () => {
       )}
 
       <ToastContainer autoClose={1000} hideProgressBar={true} theme='colored'/>
+      <Footer></Footer>
     </div>
   );
 };
